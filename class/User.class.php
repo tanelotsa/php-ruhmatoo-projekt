@@ -15,8 +15,8 @@ class User{
 
         $stmt = $this->connection->prepare("
 		
-					SELECT id, email, password, created, gender, birthdate
-					FROM user_sample
+					SELECT id, email, password, created, gender, birthdate, name, location
+					FROM user_info
 					WHERE email = ? 
 					
 		");
@@ -27,7 +27,7 @@ class User{
         $stmt->bind_param("s", $email);
 
         //rea kohta tulba väärtus
-        $stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $gender, $birthdate);
+        $stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $gender, $birthdate, $name, $location);
 
         $stmt->execute();
         //ainult SELECT'i puhul
@@ -63,14 +63,14 @@ class User{
 
         //loon ühenduse
 
-        $stmt = $this->connection->prepare("INSERT INTO user_sample (email, password, gender, birthdate) VALUE(?,?,?,?)");
+        $stmt = $this->connection->prepare("INSERT INTO user_info (email, password, gender, birthdate, name, location) VALUE(?,?,?,?,?,?)");
         echo $this->connection->error;
         //asendan küsimärgid
         //iga märgikohta tuleb lisada üks täht ehk mis tüüpi muutuja on
         //	s - string
         //	i - int,arv
         //  d - double
-        $stmt->bind_param("ssss", $email, $password, $_POST["gender"], $_POST["birthdate"]);
+        $stmt->bind_param("ssssss", $email, $password, $_POST["gender"], $_POST["birthdate"],$_POST["signupName"],$_POST["signupLocation"]);
 
 
         //täida käsku

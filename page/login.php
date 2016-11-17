@@ -97,19 +97,19 @@ if (isset ($_POST["birthdate"])) {
     if(empty($_POST["birthdate"])) {
 
         //on tühi
-        $birthdateError = "Sisesta sünnikuupäev!";
+        $birthdateError = "Väli on kohustuslik!";
 
     }
 
 }
 
-if (isset ($_POST["signpName"])) {
+if (isset ($_POST["signupName"])) {
 
 
-    if(empty($_POST["signpName"])) {
+    if(empty($_POST["signupName"])) {
 
         //on tühi
-        $birthdateError = "Sisesta nimi!";
+        $signupNameError = "Väli on kohustuslik!";
 
     }
 
@@ -121,7 +121,7 @@ if (isset ($_POST["signupLocation"])) {
     if(empty($_POST["signupLocation"])) {
 
         //on tühi
-        $birthdateError = "Sisesta elukoht!";
+        $signupLocationError = "Väli on kohustuslik!";
 
     }
 
@@ -134,7 +134,7 @@ if (isset ($_POST["gender"])) {
 
     if(empty($_POST["gender"])) {
 
-        $genderError = "Sisesta sugu !";
+        $genderError = "Väli on kohustuslik!";
 
     }
 
@@ -244,7 +244,7 @@ if ( isset($_POST["loginEmail"]) &&
 
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-2">
 
-                <h1>Loo kasutaja</h1>
+                <h1>Liitu</h1>
                 <form method="POST">
 
                     <label>E-Post:</label>
