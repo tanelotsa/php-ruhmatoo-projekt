@@ -13,13 +13,7 @@ class User{
 
         $notice = "";
 
-        $stmt = $this->connection->prepare("
-		
-					SELECT id, email, password, created, gender, birthdate, name, location
-					FROM user_info
-					WHERE email = ? 
-					
-		");
+        $stmt = $this->connection->prepare("SELECT id, email, password, created, gender, birthdate, name, location FROM user_info WHERE email = ? ");
         echo $this->connection->error;
 
         //asendan ?
@@ -40,6 +34,8 @@ class User{
 
                 $_SESSION ["userId"] = $id;
                 $_SESSION ["userEmail"] = $emailFromDb;
+                $_SESSION ["userName"] = $name;
+
 
                 header("Location: data.php");
 

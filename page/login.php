@@ -13,9 +13,6 @@ if (isset($_SESSION["userId"])) {
     exit();
 }
 
-//var_dump($_GET);
-//echo "<br>";
-//var_dump($_POST);
 $signupEmailError = "";
 $signupEmail = "";
 $loginEmail = "";
@@ -84,7 +81,7 @@ if (isset ($_POST["signupPassword"])) {
 
         if (strlen($_POST["signupPassword"]) < 8 ) {
 
-            $signupPasswordError = "* Parool peab olema vähemalt kaheksa märki!";
+            $signupPasswordError = "Vähemalt kaheksa märki !";
         }
 
     }
@@ -165,7 +162,7 @@ if ( $signupEmailError == "" &&
     isset($_POST["signupName"]) &&
     isset($_POST["signupLocation"])
 
-) {
+)  {
 
     //kõik olemas, vigu polnud
     echo "SALVESTAN...<br>";
@@ -184,7 +181,7 @@ if ( $signupEmailError == "" &&
     $User->signup($Helper->cleanInput($signupEmail), $password);
 
 
-}
+    }
 
 
 
@@ -195,10 +192,10 @@ if ( isset($_POST["loginEmail"]) &&
     !empty($_POST["loginEmail"]) &&
     !empty($_POST["loginPassword"])
 
-) {
+    ) {
     $notice = $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
 
-}
+    }
 
 
 
@@ -211,12 +208,20 @@ if ( isset($_POST["loginEmail"]) &&
 <?php require("../header.php"); ?>
 
     <div class="container">
+        <div class="row">
+
+                <img src="https://racycles.azureedge.net/catalog/cervelo-triathlon-pic.jpg" class="img-responsive" alt="Responsive image">
+
+        </div>
+    </div>
+
+    <div class="container">
 
         <div class="row">
 
-            <div class="col-sm-4 col-md-3">
+            <div class="col-sm-4 col-md-3 col-md-offset-1">
 
-                <h1>Logi Sisse</h1>
+                <h2>Logi Sisse</h2>
                 <p> <?=$notice;?> </p>
                 <form method="POST">
 
@@ -241,10 +246,10 @@ if ( isset($_POST["loginEmail"]) &&
 
                 </form>
             </div>
+            
 
+                <h2>Liitu</h2>
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-2">
-
-                <h1>Liitu</h1>
                 <form method="POST">
 
                     <label>E-Post:</label>
@@ -268,14 +273,14 @@ if ( isset($_POST["loginEmail"]) &&
                         <input class="form-control" name="signupName" type = "text" > <?php echo $signupNameError; ?>
                     </div>
 
-
                     <label>Elukoht:</label>
 
                     <div class="form-group">
                         <input class="form-control" name="signupLocation" type = "text" > <?php echo $signupLocationError; ?>
                     </div>
 
-
+            </div>
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
                     <label>Sünnikuupäev:</label>
 
 
@@ -304,7 +309,7 @@ if ( isset($_POST["loginEmail"]) &&
 
                     <input class="btn btn-primary btn-sm hidden-xs" type = "submit" value = "LOO KASUTAJA" >
                     <input class="btn btn-primary btn-sm btn-block visible-xs-block" type = "submit" value = "LOO KASUTAJA" >
-
+            </div>
 
 
                 </form>
