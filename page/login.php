@@ -165,13 +165,13 @@ if ( $signupEmailError == "" &&
 )  {
 
     //kõik olemas, vigu polnud
-    echo "SALVESTAN...<br>";
-    echo "email ".$signupEmail."<br>";
-    echo "parool ".$_POST["signupPassword"]."<br>";
-    echo "nimi ".$_POST["signupName"]."<br>";
-    echo "elukoht ".$_POST["signupLocation"]."<br>";
-    echo "sünnikuupäev ".$_POST["birthdate"]."<br>";
-    echo "sugu " .$_POST["gender"]. "<br>";
+    //echo "SALVESTAN...<br>";
+    //echo "email ".$signupEmail."<br>";
+    //echo "parool ".$_POST["signupPassword"]."<br>";
+    //echo "nimi ".$_POST["signupName"]."<br>";
+    //echo "elukoht ".$_POST["signupLocation"]."<br>";
+    //echo "sünnikuupäev ".$_POST["birthdate"]."<br>";
+    //echo "sugu " .$_POST["gender"]. "<br>";
 
 
     $password = hash("sha512",$_POST["signupPassword"]);
@@ -219,7 +219,7 @@ if ( isset($_POST["loginEmail"]) &&
 
         <div class="row">
 
-            <div class="col-sm-4 col-md-3 col-md-offset-1">
+            <div class="col-sm-4 col-md-3">
 
                 <h2>Logi Sisse</h2>
                 <p> <?=$notice;?> </p>
@@ -241,15 +241,17 @@ if ( isset($_POST["loginEmail"]) &&
                     </div>
 
 
-                    <input class="btn btn-success btn-sm hidden-xs" type = "submit" value = "LOGI SISSE" >
+                    <input class="btn btn-success btn-md hidden-xs" type = "submit" value = "LOGI SISSE" >
                     <input class="btn btn-success btn-sm btn-block visible-xs-block" type = "submit" value = "LOGI SISSE" >
 
                 </form>
             </div>
-            
 
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
                 <h2>Liitu</h2>
-            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-2">
+            </div>
+
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
                 <form method="POST">
 
                     <label>E-Post:</label>
@@ -272,51 +274,41 @@ if ( isset($_POST["loginEmail"]) &&
                     <div class="form-group">
                         <input class="form-control" name="signupName" type = "text" > <?php echo $signupNameError; ?>
                     </div>
-
-                    <label>Elukoht:</label>
-
-                    <div class="form-group">
-                        <input class="form-control" name="signupLocation" type = "text" > <?php echo $signupLocationError; ?>
-                    </div>
-
-            </div>
-            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
-                    <label>Sünnikuupäev:</label>
-
-
-                    <div class="form-group">
-                        <input class="form-control" name="birthdate" type = "date" > <?php echo $birthdateError; ?>
-                    </div>
-
-
-                    <label>Sugu:</label>
-
-                    <div class="checkbox">
-                        <?php if ($gender == "Mees") { ?>
-                            <input name="gender" type = "radio" value ="Mees" checked >	Mees
-                        <?php } else { ?>
-                            <input name="gender" type = "radio" value ="Mees" >	Mees
-                        <?php } ?>
-                    </div>
-
-                    <div class="checkbox">
-                        <?php if ($gender == "Naine") { ?>
-                            <input name="gender" type = "radio" value ="Naine" checked > Naine
-                        <?php } else { ?>
-                            <input name="gender" type = "radio" value ="Naine" > Naine
-                        <?php } ?>
-                    </div>
-
-                    <input class="btn btn-primary btn-sm hidden-xs" type = "submit" value = "LOO KASUTAJA" >
+                    <input class="btn btn-primary btn-md hidden-xs" type = "submit" value = "LOO KASUTAJA" >
                     <input class="btn btn-primary btn-sm btn-block visible-xs-block" type = "submit" value = "LOO KASUTAJA" >
             </div>
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
+
+                        <label>Elukoht:</label>
+
+                        <div class="form-group">
+                            <input class="form-control" name="signupLocation" type = "text" > <?php echo $signupLocationError; ?>
+                        </div>
 
 
-                </form>
+                        <label>Sünnikuupäev:</label>
+
+
+                        <div class="form-group">
+                            <input class="form-control" name="birthdate" type = "date" > <?php echo $birthdateError; ?>
+                        </div>
+
+
+                        <label>Sugu:</label>
+
+                        <div class="dropdown">
+
+                            <select class="form-control" name="gender">
+
+                                <option value="Mees">Mees</option>
+                                <option value="Naine">Naine</option>
+                        </div>
+
+
+
             </div>
 
-        </div>
 
-    </div>
+        </div>
 
 <?php require("../footer.php"); ?>
