@@ -66,6 +66,7 @@
 		 ) {
 			 $Event->saveEvent($Helper->cleanInput($_POST["event"], $_POST["date"], $_POST["location"], $_POST["info"] ));
 			 
+			 header("Location: data.php");
 			
 			 
 			 }
