@@ -9,15 +9,15 @@ class Event {
 		
 	}
 	
-		function saveEvent($event, $date, $location, $info) {
+		function saveEvent($event, $date, $time, $location, $info) {
 			
-			$stmt = $this->connection->prepare("INSERT INTO s_event (event, date, location, info) VALUE (?, ?, ?, ?)");
+			$stmt = $this->connection->prepare("INSERT INTO s_event (event, date, time, location, info) VALUE (?, ?, ?, ?, ?)");
 			echo $this->connection->error;
 			
-			$stmt->bind_param("ssss", $event, $date, $location, $info);
+			$stmt->bind_param("sssss", $event, $date, $time, $location, $info);
 			
 			if ($stmt->execute() ){
-				echo "õnnestus";
+				echo "ï¿½nnestus";
 			} else {
 				echo "ERROR".$stmt->error;
 			}
