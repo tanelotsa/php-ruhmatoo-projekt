@@ -77,7 +77,7 @@
 		 !empty($_POST["location"])
 		 ) {
 			 $Event->saveEvent($Helper->cleanInput($_POST["event"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["time"]), $Helper->cleanInput($_POST["location"]), $Helper->cleanInput($_POST["info"]));
-       echo Õnnestus ;
+
 			 header("Location: data.php");
 
 
@@ -169,7 +169,7 @@
 
 
 			<div class="col-sm-4 col-sm-offset-2 col-md-8 col-md-offset-1">
-
+				<label></label>
 			<?php
 
 
@@ -178,13 +178,13 @@
 
 			$html .= "<tr>";
 			//$html .= "<td>ID</td>";
-			$html .= "<td>Liik</td>";
-			$html .= "<td>Kuupäev</td>";
-			$html .= "<td>Aeg</td>";
-			$html .= "<td>Asukoht</td>";
-			$html .= "<td>Lisainfo</td>";
+			$html .= "<td style=\"width: 20%\">Liik</td>";
+			$html .= "<td style=\"width: 12%\">Kuupäev</td>";
+			$html .= "<td style=\"width: 5%\">Aeg</td>";
+			$html .= "<td style=\"width: 15%\">Asukoht</td>";
+			$html .= "<td style=\"width: 40%\">Lisainfo</td>";
 			//$html .= "<td>Muuda</td>";
-			$html .= "<td>Liitu</td>";
+			$html .= "<td style=\"width: 5%\">Liitu</td>";
 			$html .= "</tr>";
 
 			foreach ($sport as $s) {
