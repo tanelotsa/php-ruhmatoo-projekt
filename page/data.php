@@ -83,20 +83,44 @@
 
 			 }
 
+	$sport = $Event->getAllEvents();
+
     ?>
 
     <?php require("../header.php"); ?>
-    <div class="container">
+    <div class="container" style="width:100%;background-color:lightgray;">
         <div class="row">
 
+			<div class="col-sm-4 col-md-4 col-md-offset-1">
 
-				<h3>
+				<h2>
 					Tere tulemast <?=$_SESSION["userName"];?>!
-					<a href="?logout=1">Logi Välja</a>
-				</h3>
+				</h2>
+			</div>
 
+			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
+				<h2>
+					<a class='btn btn-info btn-md' href='edit.php?id=".$s->id."'>Minu Treeningud</a></td>
+					<a class='btn btn-info btn-md' href='edit.php?id=".$s->id."'>Kasutaja info</a></td>
+					<a class='btn btn-danger btn-md' href="?logout=1">Logi Välja</a></td>
+				</h2>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-md-4">
 				<h1>Loo uus treening</h1>
+			</div>
 
+			<div class="col-sm-4 col-md-5">
+				<h1>Treeningute Nimekiri</h1>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-sm-4 col-md-3">
 
 				<form method="POST" >
@@ -143,7 +167,48 @@
 			</div>
 
 
-        </div>
 
+			<div class="col-sm-4 col-sm-offset-2 col-md-8 col-md-offset-1">
+
+			<?php
+
+
+
+			$html = "<table class='table table-bordered table-condensed'>";
+
+			$html .= "<tr>";
+			//$html .= "<td>ID</td>";
+			$html .= "<td>Liik</td>";
+			$html .= "<td>Kuupäev</td>";
+			$html .= "<td>Aeg</td>";
+			$html .= "<td>Asukoht</td>";
+			$html .= "<td>Lisainfo</td>";
+			//$html .= "<td>Muuda</td>";
+			$html .= "<td>Liitu</td>";
+			$html .= "</tr>";
+
+			foreach ($sport as $s) {
+
+				$html .= "<tr>";
+				//$html .= "<td>".$s->id."</td>";
+				$html .= "<td>".$s->event."</td>";
+				$html .= "<td>".$s->date."</td>";
+				$html .= "<td>".$s->time."</td>";
+				$html .= "<td>".$s->location."</td>";
+				$html .= "<td>".$s->info."</td>";
+				//$html .= "<td><a class='btn btn-primary btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+				$html .= "<td><a class='btn btn-success btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-ok'></span></a></td>";
+				$html .= "</tr>";
+
+			}
+
+			$html .= "</table>";
+
+			echo $html;
+
+
+			?>
+			</div>
+		</div>
     </div>
     <?php require("../footer.php"); ?>
