@@ -83,7 +83,19 @@
 
 			 }
 
-	$sport = $Event->getAllEvents();
+			 // otsib
+	if (isset($_GET["q"])) {
+		
+		$q = $_GET["q"];
+	
+	} else {
+		//ei otsi
+		$q = "";
+	}
+	
+	
+			 
+	$sport = $Event->getAllEvents($q);
 
     ?>
 
@@ -170,6 +182,12 @@
 
 			<div class="col-sm-4 col-sm-offset-2 col-md-8 col-md-offset-1">
 				<label></label>
+				
+			<form>
+			<input type="search" name="q" value="<?=$q;?>">
+			<input type="submit" value="Otsi">
+			</form>
+
 			<?php
 
 
