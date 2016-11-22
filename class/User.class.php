@@ -35,7 +35,9 @@ class User{
                 $_SESSION ["userId"] = $id;
                 $_SESSION ["userEmail"] = $emailFromDb;
                 $_SESSION ["userName"] = $name;
-
+                $_SESSION ["userGender"] = $gender;
+                $_SESSION ["userLocation"] = $location;
+                $_SESSION ["userBirthDate"] = $birthdate;
 
                 header("Location: data.php");
 

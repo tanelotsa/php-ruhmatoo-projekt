@@ -26,4 +26,11 @@
         </div>
     </div>
 
+    <div class="container">
+        <h2><strong>Nimi: </strong><?=$_SESSION["userName"];?></h2>
+        <h2><strong>Sugu:</strong> <?=$_SESSION["userGender"];?></h2>
+        <h2><strong>Elukoht: </strong><?=$_SESSION["userLocation"];?></h2>
+        <h2><strong>Sünnikuupäev:</strong> <?=$_SESSION["userBirthDate"];?></h2>
+    </div>
+
 <?php require("../footer.php"); ?>
