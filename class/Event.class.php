@@ -24,9 +24,26 @@ class Event {
 	}
 
 
-	function getAllEvents () {
+	function getAllEvents ($q) {
 
-		$stmt = $this->connection->prepare("SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL");
+
+
+        if ($q != "") {
+            //otsin
+            echo "otsin: ".$q;
+            $stmt = $this->connection->prepare("
+              SELECT event, date, time, location, info FROM s_event Where id = ? AND deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time like ? OR location like ? or info like ?)
+              ");
+            $searchWord = "%".$q."%";
+            $stmt->bind_param("isssss", $_SESSION ["userId"],$searchWord, $searchWord, $searchWord,$searchWord,$searchWord);
+        } else {
+            //ei otsi
+            $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL");
+            $stmt->bind_param("i", $_SESSION ["userId"]);
+        }
+
+
+
 		//$stmt->bind_param("i", $_SESSION ["userId"]);
 		$stmt->bind_result($id, $event, $date, $time, $location, $info);
 		$stmt->execute ();
