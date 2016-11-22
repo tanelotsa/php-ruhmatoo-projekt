@@ -32,14 +32,14 @@ class Event {
             //otsin
             echo "otsin: ".$q;
             $stmt = $this->connection->prepare("
-              SELECT event, date, time, location, info FROM s_event Where id = ? AND deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time like ? OR location like ? or info like ?)
+              SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ?)
               ");
             $searchWord = "%".$q."%";
-            $stmt->bind_param("isssss", $_SESSION ["userId"],$searchWord, $searchWord, $searchWord,$searchWord,$searchWord);
+            $stmt->bind_param("sssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
         } else {
             //ei otsi
             $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL");
-            $stmt->bind_param("i", $_SESSION ["userId"]);
+           
         }
 
 
