@@ -46,6 +46,60 @@ class Event {
 		return $results;
 	}
 
+
+	function getSingleEventData($edit_id){
+
+		$stmt = $this->connection->prepare("SELECT event, date, time, location, info FROM s_event WHERE id=? AND deleted IS NULL");
+
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($event, $date, $time, $location, $info);
+		$stmt->execute();
+		//tekitan objekti
+		$s = new Stdclass();
+		//saime ühe rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			$s->event = $event;
+			$s->date = $date;
+			$s->time = $time;
+			$s->location = $location;
+			$s->info = $info;
+		}else{
+			// ei saanud rida andmeid kätte
+			// sellist id'd ei ole olemas
+			// see rida võib olla kustutatud
+			header("Location: data.php");
+			exit();
+		}
+		$stmt->close();
+		return $s;
+	}
+
+	function updateEvent($id, $event, $date, $time, $location, $info){
+
+		$stmt = $this->connection->prepare("UPDATE s_event SET event=?, date=?, time=?, location=?, info=? WHERE id=? AND deleted IS NULL");
+
+		$stmt->bind_param("sssssi",$event, $date, $time, $location, $info, $id);
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "salvestus õnnestus!";
+		}
+		$stmt->close();
+	}
+
+	function deleteEvent($id){
+
+		$stmt = $this->connection ->prepare("UPDATE s_event SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("i",$id);
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "salvestus õnnestus!";
+		}
+		$stmt->close();
+	}
+
 }
 ?>	
 	
