@@ -184,10 +184,26 @@
 				<label></label>
 				
 			<form>
-			<input type="search" name="q" value="<?=$q;?>">
-			<input type="submit" value="Otsi">
+			
+		
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="input-group">
+						<input type="search" name="q" value="<?=$q;?>" class="form-control" placeholder="Otsi treeningut...">
+						<span class="input-group-btn">
+						<button class="btn btn-success" type="submit">Otsi</button>
+					</span>
+					</div><!-- /input-group -->
+				</div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+			
+			
+			
+			
 			</form>
 
+			
+			
 			<?php
 
 
@@ -230,3 +246,4 @@
 		</div>
     </div>
     <?php require("../footer.php"); ?>
+	
