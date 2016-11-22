@@ -7,14 +7,17 @@ $Helper = new Helper($mysqli);
 require("../class/Event.class.php");
 $Event = new Event($mysqli);
 
-$s = $Event->getSingleEventData($_GET["id"]);
-//var_dump($s);
 
 if(isset($_POST["update"])){
     $Event->updateEvent($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["event"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["time"]),$Helper->cleanInput($_POST["location"]),$Helper->cleanInput($_POST["info"]));
-    header("Location: edit.php?id=".$_POST["id"]."&success=true");
+
+    header("Location: data.php?id=".$_POST["id"]."&success=true");
+
     exit();
 }
+
+$s = $Event->getSingleEventData($_GET["id"]);
+//var_dump($s);
 
 if(isset($_GET["delete"])){
     $Event->deleteEvent($_GET["id"]);
@@ -40,28 +43,41 @@ if(isset($_GET["delete"])){
 
 <div class="container">
     <div class="row">
+        <div class="col-sm-4 col-md-4 col-md-offset-1">
+
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 
-            <input type="hidden" name="id" value="<?=$_GET["id"];?>" >
+                <input type="hidden" name="id" value="<?=$_GET["id"];?>" >
 
-            <label for="event" >Treeningu Liik</label><br>
-            <input id="event" name="event" type="text" value="<?=$s->event;?>" ><br><br>
+            <div class="form-group">
+                <label for="event" >Treeningu Liik</label>
+                <input class="form-control" id="event" name="event" type="text" value="<?=$s->event;?>" >
+            </div>
 
-            <label for="date" >Kuupäev</label><br>
-            <input id="date" name="date" type="date" value="<?=$s->date;?>"><br><br>
+            <div class="form-group">
+                <label for="date" >Kuupäev</label>
+                <input class="form-control" id="date" name="date" type="date" value="<?=$s->date;?>">
+            </div>
 
-            <label for="time" >Kellaaeg</label><br>
-            <input id="time" name="time" type="time" value="<?=$s->time;?>"><br><br>
+            <div class="form-group">
+                <label for="time" >Kellaaeg</label>
+                <input class="form-control" id="time" name="time" type="time" value="<?=$s->time;?>">
+            </div>
 
-            <label for="location" >Asukoht</label><br>
-            <input id="location" name="location" type="text" value="<?=$s->location;?>"><br><br>
+            <div class="form-group">
+                <label for="location" >Asukoht</label>
+                <input class="form-control" id="location" name="location" type="text" value="<?=$s->location;?>">
+            </div>
 
-            <label for="info" >Lisainfo</label><br>
-            <input id="info" name="info" type="text" value="<?=$s->info;?>"><br><br>
+            <div class="form-group">
+                <label for="info" >Lisainfo</label>
+                <input class="form-control" id="info" name="info" type="text" value="<?=$s->info;?>">
+            </div>
+                <input class='btn btn-info btn-md' type="submit" name="update" value="Muuda">
 
-            <input type="submit" name="update" value="Muuda">
+            <a class='btn btn-danger btn-md' href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
         </form>
-        <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
+        </div>
     </div>
 </div>
 

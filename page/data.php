@@ -112,9 +112,9 @@
 
 			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
 				<h2>
-					<a class='btn btn-info btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a></td>
-					<a class='btn btn-info btn-md' href='user.php?id=".$s->id."'>Kasutaja info</a></td>
-					<a class='btn btn-danger btn-md' href="?logout=1">Logi Välja</a></td>
+					<a class='btn btn-info btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a>
+					<a class='btn btn-info btn-md' href='user.php?id=".$s->id."'>Kasutaja info</a>
+					<a class='btn btn-danger btn-md' href="?logout=1">Logi Välja</a>
 				</h2>
 			</div>
 
