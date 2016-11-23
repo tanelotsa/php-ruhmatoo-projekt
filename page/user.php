@@ -15,13 +15,6 @@
 	}
 	
 	
-	//kui on ?logout aadressireal siis login välja
-	if (isset($_GET["logout"])) {
-		
-		session_destroy();
-		header("Location: login.php");
-		exit();
-	}
 	
 	$msg = "";
 	if(isset($_SESSION["message"])){
@@ -40,11 +33,7 @@
 		
 	}
 	
-    $interests = getAllInterests();
-
-
-
-
+    //$interests = getAllInterests();
 
 
 
@@ -74,21 +63,7 @@
 	
 	
 	<h2>Salvesta huvi</h2>
-<?php
-    
-    $listHtml = "<ul>";
-	
-	foreach($interests as $i){
-		
-		
-		$listHtml .= "<li>".$i->interest."</li>";
-	}
-    
-    $listHtml .= "</ul>";
-	
-	echo $listHtml;
-    
-?>
+
 <form method="POST">
 	
 	<label>Hobi/huviala nimi</label><br>
