@@ -17,7 +17,7 @@ class Interest {
         echo $this->connection->error;
         $stmt->bind_param("si", $interest, $_SESSION ["userId"]);
         if($stmt->execute() ) {
-            echo "Õnnestus!","<br>";
+            //echo "Õnnestus!","<br>";
         } else{
             echo "ERROR".$stmterror;
         }
@@ -50,7 +50,7 @@ class Interest {
         // kas õnnestus salvestada
         if($stmt->execute()){
             // õnnestus
-            echo "salvestus õnnestus!";
+            //echo "salvestus õnnestus!";
         }
         $stmt->close();
     }
