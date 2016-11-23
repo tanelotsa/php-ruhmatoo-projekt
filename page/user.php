@@ -43,6 +43,8 @@
 	
 	
     $interests = getAllInterests();
+	
+	
 
 
 
@@ -127,5 +129,24 @@
 	<input type="submit" value="Lisa">
 	
 </form>
+<?php
+	
+	
+	$html = "<table>";
+		$html .= "<tr>";
+				$html .= "<th>ID</th>";
+				$html .= "<th>interest</th>";
+		$html .= "</tr>";
+		foreach ($interests as $i) {
+				$html .= "<tr>";
+				$html .= "<td>".$i->id."</td>";
+				$html .= "<td>".$i->interest."</td>";
+		$html .= "</tr>";
+		}
+		
+	$html .= "</table>";
+	
+	echo $html;	
+?>
 
 <?php require("../footer.php"); ?>
