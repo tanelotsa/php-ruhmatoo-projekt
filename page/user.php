@@ -57,7 +57,7 @@
                 <h1> Kasutaja info </h1>
             </div>
 
-            <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
+            <div class="col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-5">
                 <h1><a class='btn btn-info btn-md' href='data.php?id=".$s->id."'>Tagasi</a></h1>
             </div>
         </div>
@@ -69,55 +69,59 @@
 			<h2><strong>Sugu:</strong> <?=$_SESSION["userGender"];?></h2>
 			<h2><strong>Elukoht: </strong><?=$_SESSION["userLocation"];?></h2>
 			<h2><strong>Sünnikuupäev:</strong> <?=$_SESSION["userBirthDate"];?></h2>
-		
-		
-		
-		
-		<h2>Salvesta huvi</h2>
 
-		<form method="POST">
-			
-			<label>Hobi/huviala nimi</label><br>
-			<input name="interest" type="text">
-			
-			<input type="submit" value="Salvesta">
-			
-		</form>
+			<br><br>
+
+			<form method="POST">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="input-group">
+
+						<input type="text" name="interest" class="form-control" placeholder="Lisa Huviala...">
+						<span class="input-group-btn">
+
+						<button class="btn btn-success" type="submit">Lisa <span class="glyphicon glyphicon-heart-empty"></span></button>
+
+					</span>
+					</div>
+				</div>
+			</div>
+			</form>
+
 		</div>
-	
-	<div class="col-sm-4 col-md-4 col-md-offset-2">
-	
-	
-	
-<h2>Huvialad</h2>
-	
-<?php
-	
-	
-	$html = "<table class='table table-bordered table-condensed '>";
-	
-		$html .= "<tr>";
-			//$html .= "<td>ID</td>";
-			$html .= "<td>Huviala</td>";
-			$html .= "<td>Kustuta</td>";
-		$html .= "</tr>";
-		
-		foreach ($interests as $i) {
-			
-			$html .= "<tr>";
-				//$html .= "<td>".$s->id."</td>";
-				$html .= "<td>".$i->interest."</td>";
-				$html .= "<td> <a class='btn btn-danger btn-xs' href='user.php?id=".$i->id."&delete=true'> <span class='glyphicon glyphicon-remove'></span></a></td>";
-			$html .= "</tr>";
 
-		}
-		
-	$html .= "</table>";
-	
-	echo $html;	
-	
-	
-?>
+	<div class="col-sm-4 col-md-4 col-md-offset-2">
+
+		<h2>Huvialad</h2>
+
+		<?php
+
+
+			$html = "<table class='table table-bordered table-condensed'>";
+
+				$html .= "<tr>";
+					//$html .= "<td>ID</td>";
+					$html .= "<td class=\"active\">Huviala</td>";
+					$html .= "<td class=\"active\" style=\"width: 5%\"></td>";
+				$html .= "</tr>";
+
+				foreach ($interests as $i) {
+
+					$html .= "<tr>";
+						//$html .= "<td>".$s->id."</td>";
+						$html .= "<td>".$i->interest."</td>";
+						$html .= "<td> <a class='btn btn-danger btn-xs' href='user.php?id=".$i->id."&delete=true'> <span class='glyphicon glyphicon-remove'></span></a></td>";
+					$html .= "</tr>";
+
+				}
+
+			$html .= "</table>";
+
+			echo $html;
+
+
+		?>
+
 	</div>
 	</div>
 <?php require("../footer.php"); ?>

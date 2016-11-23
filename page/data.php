@@ -111,7 +111,7 @@
 				</h2>
 			</div>
 
-			
+
 			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
 				<h2>
 					<a class='btn btn-default btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a>
@@ -191,7 +191,7 @@
 			
 		
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-md-4">
 					<div class="input-group">
 						<input type="search" name="q" value="<?=$q;?>" class="form-control" placeholder="Otsi treeningut...">
 						<span class="input-group-btn">
@@ -199,9 +199,9 @@
 						<button class="btn btn-success" type="submit">Otsi <span class="glyphicon glyphicon-search"></span></button>
 						
 					</span>
-					</div><!-- /input-group -->
-				</div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+					</div>
+				</div>
+			</div>
 			
 			
 			

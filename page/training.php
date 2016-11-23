@@ -20,7 +20,7 @@
             <h1> Treeningute leht </h1>
         </div>
 
-        <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
+        <div class="col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-5">
             <h1><a class='btn btn-info btn-md' href='data.php?id=".$s->id."'>Tagasi</a></h1>
         </div>
     </div>
