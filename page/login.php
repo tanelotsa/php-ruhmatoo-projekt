@@ -276,6 +276,7 @@ if ( isset($_POST["loginEmail"]) &&
                     </div>
                     <input class="btn btn-primary btn-md hidden-xs" type = "submit" value = "LOO KASUTAJA" >
                     <input class="btn btn-primary btn-sm btn-block visible-xs-block" type = "submit" value = "LOO KASUTAJA" >
+					
             </div>
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
 

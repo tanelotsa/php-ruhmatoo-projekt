@@ -29,7 +29,7 @@ if(isset($_GET["delete"])){
 
 <?php require("../header.php"); ?>
 
-<div class="container" style="width:100%;background-color:lightgray;">
+<div class="container" style="width:100%;background-color:#EBEBE6;">
     <div class="row">
         <div class="col-sm-4 col-md-4 col-md-offset-1">
             <h1> Muuda treeningut </h1>

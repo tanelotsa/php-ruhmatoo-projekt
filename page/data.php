@@ -100,7 +100,8 @@
     ?>
 
     <?php require("../header.php"); ?>
-    <div class="container" style="width:100%;background-color:lightgrey;">
+	
+    <div class="container" style="width:100%;background-color:#EBEBE6;">
         <div class="row">
 
 			<div class="col-sm-4 col-md-4 col-md-offset-1">
@@ -110,10 +111,11 @@
 				</h2>
 			</div>
 
+			
 			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
 				<h2>
-					<a class='btn btn-info btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a>
-					<a class='btn btn-info btn-md' href='user.php?id=".$s->id."'>Kasutaja info</a>
+					<a class='btn btn-default btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a>
+					<a class='btn btn-default btn-md' href='user.php?id=".$s->id."'>Kasutaja info</a>
 					<a class='btn btn-danger btn-md' href="?logout=1">Logi Välja</a>
 				</h2>
 			</div>
@@ -121,6 +123,8 @@
 		</div>
 	</div>
 
+	
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-md-4">
@@ -191,7 +195,9 @@
 					<div class="input-group">
 						<input type="search" name="q" value="<?=$q;?>" class="form-control" placeholder="Otsi treeningut...">
 						<span class="input-group-btn">
-						<button class="btn btn-success" type="submit">Otsi</button>
+						
+						<button class="btn btn-success" type="submit">Otsi <span class="glyphicon glyphicon-search"></span></button>
+						
 					</span>
 					</div><!-- /input-group -->
 				</div><!-- /.col-lg-6 -->
@@ -245,5 +251,6 @@
 			</div>
 		</div>
     </div>
+	
     <?php require("../footer.php"); ?>
 	

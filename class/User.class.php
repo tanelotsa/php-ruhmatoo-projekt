@@ -73,7 +73,8 @@ class User{
 
         //täida käsku
         if($stmt->execute() ) {
-            echo "Õnnestus!";
+            //echo "Õnnestus!";
+			
         } else{
             echo "ERROR".$stmterror;
         }
