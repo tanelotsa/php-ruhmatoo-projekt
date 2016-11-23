@@ -29,12 +29,13 @@
 		!empty($_POST["interest"])
 	  ) {
 		  
-		saveInterest(cleanInput($_POST["interest"]));
+		
+		$Interest->saveInterest($Helper->cleanInput($_POST["interest"]));
 		
 	}
 	
-    //$interests = getAllInterests();
 
+    $interests = $Interest->getAllInterests();
 
 
 ?>
@@ -58,22 +59,49 @@
         <h2><strong>Sugu:</strong> <?=$_SESSION["userGender"];?></h2>
         <h2><strong>Elukoht: </strong><?=$_SESSION["userLocation"];?></h2>
         <h2><strong>Sünnikuupäev:</strong> <?=$_SESSION["userBirthDate"];?></h2>
-    </div>
+    
 	
 	
 	
 	<h2>Salvesta huvi</h2>
 
-<form method="POST">
+	<form method="POST">
+		
+		<label>Hobi/huviala nimi</label><br>
+		<input name="interest" type="text">
+		
+		<input type="submit" value="Salvesta">
+		
+	</form>
+	</div>
+<h2>Arhiiv</h2>
 	
-	<label>Hobi/huviala nimi</label><br>
-	<input name="interest" type="text">
+<?php
 	
-	<input type="submit" value="Salvesta">
 	
-</form>
-
-
+	$html = "<table>";
+	
+		$html .= "<tr>";
+			//$html .= "<td>ID</td>";
+			$html .= "<td>Huviala</td>";
+		$html .= "</tr>";
+		
+		foreach ($interests as $i) {
+			
+			$html .= "<tr>";
+				//$html .= "<td>".$s->id."</td>";
+				$html .= "<td>".$i->interest."</td>";
+				$html .= "<td><a href='edit.php?id=".$i->id."'>edit.php</a></td>";
+			$html .= "</tr>";
+			
+		}
+		
+	$html .= "</table>";
+	
+	echo $html;	
+	
+	
+?>
 
 <h2>Kasutaja hobid</h2>
 <form method="POST">
