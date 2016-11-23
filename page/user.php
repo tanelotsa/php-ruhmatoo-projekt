@@ -27,11 +27,14 @@
 	
 	if ( isset($_POST["interest"]) && 
 		!empty($_POST["interest"])
-	  ) {
+	) {
 		  
 		
 		$Interest->saveInterest($Helper->cleanInput($_POST["interest"]));
 		
+			header("Location: user.php?id=".$s->id."");
+			exit();
+				
 	}
 	
 	if(isset($_GET["delete"])){
