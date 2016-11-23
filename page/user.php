@@ -36,9 +36,11 @@
 		!empty($_POST["interest"])
 	  ) {
 		  
-		saveInterest(cleanInput($_POST["interest"]));
+		
+		$Interest->saveInterest($Helper->cleanInput($_POST["interest"]));
 		
 	}
+	
 	
     $interests = getAllInterests();
 
