@@ -9,12 +9,12 @@ class Event {
 		
 	}
 
-	function saveEvent($event, $date, $time, $location, $info) {
+	function saveEvent($event, $date, $time, $location, $info, $places) {
 
-		$stmt = $this->connection->prepare("INSERT INTO s_event (event, date, time, location, info) VALUE (?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO s_event (event, date, time, location, info, places) VALUE (?, ?, ?, ?, ?, ?)");
 		echo $this->connection->error;
 
-		$stmt->bind_param("sssss", $event, $date, $time, $location, $info);
+		$stmt->bind_param("sssssi", $event, $date, $time, $location, $info, $places);
 
 		if ($stmt->execute() ){
 			echo "�nnestus";
@@ -32,20 +32,20 @@ class Event {
             //otsin
             echo "otsin: ".$q;
             $stmt = $this->connection->prepare("
-              SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ?)
+              SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ?)
               ");
             $searchWord = "%".$q."%";
-            $stmt->bind_param("sssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+            $stmt->bind_param("sssssi", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
         } else {
             //ei otsi
-            $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info FROM s_event WHERE deleted IS NULL");
+            $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL");
            
         }
 
 
 
 		//$stmt->bind_param("i", $_SESSION ["userId"]);
-		$stmt->bind_result($id, $event, $date, $time, $location, $info);
+		$stmt->bind_result($id, $event, $date, $time, $location, $info, $places);
 		$stmt->execute ();
 		$results = array();
 		//tsükli sisu tehakse niimitu korda , mitu rida sql lausega tuleb
@@ -57,6 +57,7 @@ class Event {
 			$sport->time = $time;
 			$sport->location = $location;
 			$sport->info = $info;
+			$sport->places = $places;
 			//echo $color."<br>";
 			array_push($results,$sport);
 		}
@@ -66,10 +67,10 @@ class Event {
 
 	function getSingleEventData($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT event, date, time, location, info FROM s_event WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT event, date, time, location, info, places FROM s_event WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($event, $date, $time, $location, $info);
+		$stmt->bind_result($event, $date, $time, $location, $info, $places);
 		$stmt->execute();
 		//tekitan objekti
 		$s = new Stdclass();
@@ -81,6 +82,7 @@ class Event {
 			$s->time = $time;
 			$s->location = $location;
 			$s->info = $info;
+			$s->places = $places;
 		}else{
 			// ei saanud rida andmeid kätte
 			// sellist id'd ei ole olemas
@@ -92,11 +94,11 @@ class Event {
 		return $s;
 	}
 
-	function updateEvent($id, $event, $date, $time, $location, $info){
+	function updateEvent($id, $event, $date, $time, $location, $info, $places){
 
-		$stmt = $this->connection->prepare("UPDATE s_event SET event=?, date=?, time=?, location=?, info=? WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE s_event SET event=?, date=?, time=?, location=?, info=?, places=? WHERE id=? AND deleted IS NULL");
 
-		$stmt->bind_param("sssssi",$event, $date, $time, $location, $info, $id);
+		$stmt->bind_param("sssssii",$event, $date, $time, $location, $info, $places, $id);
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
