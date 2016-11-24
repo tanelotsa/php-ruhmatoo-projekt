@@ -14,8 +14,8 @@ $s = $Event->getSingleEventData($_GET["id"]);
 
 if (isset($_GET["attend"])) {
 		
-		$Event->attendEvent($Helper->cleanInput($_GET["userid"]), $Helper->cleanInput($_GET["eventid"]));
-		header("Location: data.php");
+		$Event->attendEvent($Helper->cleanInput($_GET["id"]));
+		//header("Location: data.php");
 		
 	}
 
@@ -77,7 +77,13 @@ if (isset($_GET["attend"])) {
                 <input class="form-control" id="attenders" name="attenders" type="text" value="<?=$s->attenders;?>" readonly>
             </div>
 			
-                <input class='btn btn-success btn-lg' type="submit" name="attend" value="Liitu">
+				
+				<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Liitu</a>
+				
+				<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Tühista</a>
+				
+				
+				
 				
 			
 
