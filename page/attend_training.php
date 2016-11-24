@@ -66,6 +66,17 @@ if (isset($_GET["attend"])) {
                 <label for="info" >Lisainfo</label>
                 <input class="form-control" id="info" name="info" type="text" value="<?=$s->info;?>" readonly>
             </div>
+			
+			<div class="form-group">
+                <label for="location" >Kohti</label>
+                <input class="form-control" id="places" name="places" type="text" value="<?=$s->places;?>" readonly>
+            </div>
+				
+			<div class="form-group">
+                <label for="location" >Osalejaid</label>
+                <input class="form-control" id="attenders" name="attenders" type="text" value="<?=$s->attenders;?>" readonly>
+            </div>
+			
                 <input class='btn btn-success btn-lg' type="submit" name="attend" value="Liitu">
 				
 			
