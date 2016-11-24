@@ -13,7 +13,7 @@ class User{
 
         $notice = "";
 
-        $stmt = $this->connection->prepare("SELECT id, email, password, created, gender, birthdate, name, location FROM user_info WHERE email = ? ");
+        $stmt = $this->connection->prepare("SELECT id, email, password, created, gender, birthdate, name, location FROM s_user_info WHERE email = ? ");
         echo $this->connection->error;
 
         //asendan ?
@@ -61,7 +61,7 @@ class User{
 
         //loon ühenduse
 
-        $stmt = $this->connection->prepare("INSERT INTO user_info (email, password, gender, birthdate, name, location) VALUE(?,?,?,?,?,?)");
+        $stmt = $this->connection->prepare("INSERT INTO s_user_info (email, password, gender, birthdate, name, location) VALUE(?,?,?,?,?,?)");
         echo $this->connection->error;
         //asendan küsimärgid
         //iga märgikohta tuleb lisada üks täht ehk mis tüüpi muutuja on

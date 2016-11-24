@@ -117,6 +117,21 @@ class Event {
 		$stmt->close();
 	}
 
+		function attendEvent($userid, $eventid) {
+
+		$stmt = $this->connection->prepare("INSERT INTO s_attend (user_id, event_id, attending) VALUE (?, ?, ?)");
+		echo $this->connection->error;
+
+		$stmt->bind_param("iid", $userid, $eventid);
+
+		if ($stmt->execute() ){
+			echo "õnnestus";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+	}
+
+	
 }
 ?>	
 	

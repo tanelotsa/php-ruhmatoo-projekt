@@ -94,6 +94,8 @@
 	}
 	
 	
+	
+	
 			 
 	$sport = $Event->getAllEvents($q);
 
@@ -237,7 +239,7 @@
 				$html .= "<td>".$s->location."</td>";
 				$html .= "<td>".$s->info."</td>";
 				$html .= "<td><a class='btn btn-primary btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-				$html .= "<td><a class='btn btn-success btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-ok'></span></a></td>";
+				$html .= "<td><a class='btn btn-success btn-xs' href='attend_training.php?id=".$s->id."'><span class='glyphicon glyphicon-ok'></span></a></td>";
 				$html .= "</tr>";
 
 			}
