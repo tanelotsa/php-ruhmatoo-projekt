@@ -176,6 +176,15 @@
 					<input class="form-control" type="text" name="info" >
 
 				</div>
+				
+				<div class="form-group">
+
+					<label>Kohti</label><br>
+					<input class="form-control" type="text" name="places" >
+
+				</div>
+				
+				
 
 					<input class="btn btn-success btn-md hidden-xs" type = "submit" value = "Loo treening" >
 					<input class="btn btn-success btn-sm btn-block visible-xs-block" type = "submit" value = "Loo treening" >
