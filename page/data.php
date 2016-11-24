@@ -225,6 +225,8 @@
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Aeg</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Asukoht</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 40%\"><strong>Lisainfo</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Kohti</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Osalejaid</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Edit</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Liitu</strong></td>";
 			$html .= "</tr>";
@@ -238,6 +240,8 @@
 				$html .= "<td>".$s->time."</td>";
 				$html .= "<td>".$s->location."</td>";
 				$html .= "<td>".$s->info."</td>";
+				$html .= "<td>".$s->places."</td>";
+				$html .= "<td>".$s->attenders."</td>";
 				$html .= "<td><a class='btn btn-primary btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
 				$html .= "<td><a class='btn btn-success btn-xs' href='attend_training.php?id=".$s->id."'><span class='glyphicon glyphicon-ok'></span></a></td>";
 				$html .= "</tr>";
