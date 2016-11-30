@@ -9,7 +9,7 @@ $Event = new Event($mysqli);
 
 
 if(isset($_POST["update"])){
-    $Event->updateEvent($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["event"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["time"]),$Helper->cleanInput($_POST["location"]),$Helper->cleanInput($_POST["info"]));
+    $Event->updateEvent($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["event"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["time"]),$Helper->cleanInput($_POST["location"]),$Helper->cleanInput($_POST["info"]),$Helper->cleanInput($_POST["places"]) );
 
     header("Location: data.php?id=".$_POST["id"]."&success=true");
 
@@ -73,6 +73,13 @@ if(isset($_GET["delete"])){
                 <label for="info" >Lisainfo</label>
                 <input class="form-control" id="info" name="info" type="text" value="<?=$s->info;?>">
             </div>
+
+            <div class="form-group">
+                <label>Kohti</label><br>
+                <input class="form-control" type="text" name="places" >
+            </div>
+
+
                 <input class='btn btn-info btn-md' type="submit" name="update" value="Muuda">
 
             <a class='btn btn-danger btn-md' href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
