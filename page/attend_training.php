@@ -9,7 +9,7 @@ $Event = new Event($mysqli);
 
 
 
-$s = $Event->getSingleEventData($_GET["id"]);
+$s = $Event->attendSingleEvent($_GET["id"]);
 //var_dump($s);
 
 if (isset($_GET["attend"])) {
