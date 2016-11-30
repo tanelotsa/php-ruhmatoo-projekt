@@ -26,9 +26,9 @@
     </div>
 </div>
 
+<div class="container">
+    <h2> Minu loodud treeningud </h2>
 <?php
-
-
 
 $html = "<table class='table table-bordered table-condensed '>";
 
@@ -66,7 +66,9 @@ $html .= "</table>";
 
 echo $html;
 
-
 ?>
+<h2> Tulevad Treeningud </h2>
 
+
+</div>
 <?php require("../footer.php"); ?>
