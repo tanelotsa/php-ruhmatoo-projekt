@@ -76,7 +76,7 @@ if(isset($_GET["delete"])){
 
             <div class="form-group">
                 <label>Kohti</label><br>
-                <input class="form-control" type="text" name="places" >
+                <input class="form-control" id="places" type="text" name="places" value="<?=$s->places;?>">
             </div>
 
 
