@@ -37,11 +37,11 @@ class Event {
         if($order == "DESC") {
             $orderBy = "DESC";
         }
-        echo "Sorteerin: ".$sort." ".$orderBy." ";
+        //echo "Sorteerin: ".$sort." ".$orderBy." ";
 
         if ($q != "") {
             //otsin
-            echo "otsin: ".$q;
+            //echo "otsin: ".$q;
             $stmt = $this->connection->prepare("
               SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ?) ORDER BY $sort $orderBy
               ");
