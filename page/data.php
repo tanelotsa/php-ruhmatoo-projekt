@@ -116,7 +116,7 @@
 			<div class="col-sm-4 col-md-4 col-md-offset-1">
 
 				<h2>
-					Tere tulemast <?=$_SESSION["userName"];?>!
+					Tere tulemast <?=$_SESSION["userName"];?>
 				</h2>
 			</div>
 
