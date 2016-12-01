@@ -244,7 +244,7 @@
         }
 			//$html .= "<td>ID</td>";
 			$html .= "<td class=\"active\" style=\"width: 20%\"><strong>Liik</strong></td>";
-			$html .= "<td class=\"active\" style=\"width: 13%\"><strong><a href='?q=".$q."&sort=date&order=".$orderDate."'>Kuupäev</a></strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 13%\"><strong>Kuupäev <a href='?q=".$q."&sort=date&order=".$orderDate."'><span class='glyphicon glyphicon-sort text-success'></span></a></strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Aeg</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Asukoht</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 40%\"><strong>Lisainfo</strong></td>";
