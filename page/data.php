@@ -93,12 +93,18 @@
 		//ei otsi
 		$q = "";
 	}
+	$sort = "id";
+	$order = "ASC";
 	
+	if(isset($_GET["sort"]) && (isset($_GET["order"]))) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
 	
 	
 	
 			 
-	$sport = $Event->getAllEvents($q);
+	$sport = $Event->getAllEvents($q, $sort, $order);
 
     ?>
 
@@ -229,9 +235,16 @@
 			$html = "<table class='table table-bordered table-condensed '>";
 
 			$html .= "<tr>";
+			
+			$orderDate = "ASC";
+        if (isset($_GET["order"]) &&
+            $_GET["order"] == "ASC" &&
+            $_GET["sort"] == "date" ) {
+            $orderDate = "DESC";
+        }
 			//$html .= "<td>ID</td>";
 			$html .= "<td class=\"active\" style=\"width: 20%\"><strong>Liik</strong></td>";
-			$html .= "<td class=\"active\" style=\"width: 12%\"><strong>Kuupäev</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 12%\"><strong><a href='?q=".$q."&sort=date&order=".$orderDate."'>Kuupäev</a></strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Aeg</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Asukoht</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 40%\"><strong>Lisainfo</strong></td>";
