@@ -24,7 +24,7 @@ class Event {
     }
 
 
-<<<<<<< HEAD
+
 	function getAllEvents ($q, $sort, $order) {
 		
 		$allowedSort = ["date"];
@@ -38,11 +38,6 @@ class Event {
             $orderBy = "DESC";
         }
         echo "Sorteerin: ".$sort." ".$orderBy." ";
-=======
-    function getAllEvents ($q) {
-
->>>>>>> da04f287f1344f8dc8f752405a2aed46b4b3f690
-
 
         if ($q != "") {
             //otsin
@@ -54,11 +49,11 @@ class Event {
             $stmt->bind_param("sssssi", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
         } else {
             //ei otsi
-<<<<<<< HEAD
+
             $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL ORDER BY $sort $orderBy");
            
-=======
-            $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL");
+
+         
 
         }
 
@@ -80,7 +75,7 @@ class Event {
             $sport->places = $places;
             //echo $color."<br>";
             array_push($results,$sport);
->>>>>>> da04f287f1344f8dc8f752405a2aed46b4b3f690
+
         }
         return $results;
     }
