@@ -7,11 +7,6 @@ $Helper = new Helper($mysqli);
 require("../class/Event.class.php");
 $Event = new Event($mysqli);
 
-
-
-$s = $Event->attendSingleEvent($_GET["id"]);
-//var_dump($s);
-
 if (isset($_GET["attend"])) {
 		
 		$Event->attendEvent($Helper->cleanInput($_GET["id"]));
@@ -19,6 +14,13 @@ if (isset($_GET["attend"])) {
 		
 	}
 
+$s = $Event->attendSingleEvent($_GET["id"]);
+
+var_dump($s);
+//var_dump($s);
+
+
+	
 ?>
 
 <?php require("../header.php"); ?>
@@ -73,12 +75,13 @@ if (isset($_GET["attend"])) {
             </div>
 				
 			<div class="form-group">
-                <label for="location" >Osalejaid</label>
-                <input class="form-control" id="attenders" name="attenders" type="text" value="<?=$s->attenders;?>" readonly>
+                <label for="count" >Osalejaid</label>
+                <input class="form-control" id="count" name="count" type="text" value="<?=$s->count;?>" readonly>
             </div>
 			
-				
-				<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Liitu</a>
+				<?php if(!$s->attending): ?>
+					<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Liitu</a>
+				<?php endif; ?>
 				
 				<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Tühista</a>
 				

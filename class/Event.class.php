@@ -135,7 +135,37 @@ class Event {
             header("Location: data.php");
             exit();
         }
+		
         $stmt->close();
+		
+		// kas ka osaleb
+		
+		//kas on juba olemas
+		 $stmt = $this->connection->prepare("SELECT id FROM s_attend WHERE user_id = ? AND event_id = ? AND attending = 1");
+        echo $this->connection->error;
+
+        $stmt->bind_param("ii", $_SESSION ["userId"], $edit_id);
+		$stmt->execute();
+		
+        if ($stmt->fetch() ){
+			// juba reganud
+			$s->attending = true;
+        } else {
+			$s->attending = false;
+		}
+		
+		$stmt->close();
+		
+		$stmt = $this->connection->prepare("SELECT COUNT(*) FROM s_attend WHERE event_id = ? AND attending = 1");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("i", $edit_id);
+		$stmt->execute();
+		if ($stmt->fetch() ){
+		$s->count = true;
+		}
+		$stmt->close();
+		
         return $s;
     }
 
@@ -163,9 +193,24 @@ class Event {
         }
         $stmt->close();
     }
-
+	 
     function attendEvent($eventid) {
+		
+		//kas on juba olemas
+		 $stmt = $this->connection->prepare("SELECT id FROM s_attend WHERE user_id = ? AND event_id = ? AND attending = 1");
+        echo $this->connection->error;
 
+        $stmt->bind_param("ii", $_SESSION ["userId"], $eventid);
+		$stmt->execute();
+		
+        if ($stmt->fetch() ){
+			// juba reganud
+            echo "juba reganud";
+			return;
+        } 
+		$stmt->close();
+		
+		
         $stmt = $this->connection->prepare("INSERT INTO s_attend (user_id, event_id, attending) VALUE (?, ?, ?)");
         echo $this->connection->error;
 
