@@ -214,7 +214,7 @@
 						<input type="search" name="q" value="<?=$q;?>" class="form-control" placeholder="Otsi treeningut...">
 						<span class="input-group-btn">
 						
-						<button class="btn btn-success" type="submit">Otsi <span class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
 						
 					</span>
 					</div>
