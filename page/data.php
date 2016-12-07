@@ -110,18 +110,18 @@
 
     <?php require("../header.php"); ?>
 	
-    <div class="container" style="width:100%;background-color:#EBEBE6;">
+    <div class="container" style="width:100%;background-color:white;">
         <div class="row">
 
-			<div class="col-sm-4 col-md-4 col-md-offset-1">
-
-				<h2>
-					Tere tulemast <?=$_SESSION["userName"];?>
-				</h2>
-			</div>
 
 
-			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3">
+            <div class="col-sm-4 col-md-2 col-md-offset-1">
+
+                <img src="http://r55.cooltext.com/rendered/cooltext220178043568589.png" class="img-responsive" alt="Responsive image">
+
+            </div>
+
+			<div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-5">
 				<h2>
 					<a class='btn btn-default btn-md' href='training.php?id=".$s->id."'>Minu Treeningud</a>
 					<a class='btn btn-default btn-md' href='user.php?id=".$s->id."'>Kasutaja info</a>

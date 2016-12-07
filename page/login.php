@@ -210,7 +210,7 @@ if ( isset($_POST["loginEmail"]) &&
     <div class="container">
         <div class="row">
 
-                <img src="https://racycles.azureedge.net/catalog/cervelo-triathlon-pic.jpg" class="img-responsive" alt="Responsive image">
+                <img src="https://www.upload.ee/image/6426466/pilt444.jpg" class="img-responsive" alt="Responsive image">
 
         </div>
     </div>
