@@ -117,7 +117,7 @@
 
             <div class="col-sm-4 col-md-2 col-md-offset-1">
 
-                <img src="http://r55.cooltext.com/rendered/cooltext220178043568589.png" class="img-responsive" alt="Responsive image">
+                <img src="https://www.upload.ee/image/6426686/cooltext220192944062511.png" class="img-responsive" alt="Responsive image">
 
             </div>
 
