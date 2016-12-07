@@ -160,9 +160,11 @@ class Event {
 		echo $this->connection->error;
 		
 		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($count);
+		
 		$stmt->execute();
 		if ($stmt->fetch() ){
-		$s->count = true;
+		$s->count = $count;
 		}
 		$stmt->close();
 		
