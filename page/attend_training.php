@@ -14,9 +14,15 @@ if (isset($_GET["attend"])) {
 		
 	}
 
+if (isset($_GET["remove"])) {
+
+    $Event->attendEventDelete($Helper->cleanInput($_GET["id"]));
+    //header("Location: data.php");
+
+}
+
 $s = $Event->attendSingleEvent($_GET["id"]);
 
-var_dump($s);
 //var_dump($s);
 
 
@@ -82,9 +88,10 @@ var_dump($s);
 				<?php if(!$s->attending): ?>
 					<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Liitu</a>
 				<?php endif; ?>
-				
-				<a class='btn btn-success btn-lg' href="?id=<?=$_GET["id"];?>&attend=true">Tühista</a>
-				
+
+                <?php if($s->attending): ?>
+			    	<a class='btn btn-warning btn-lg' href="?id=<?=$_GET["id"];?>&remove=true">Tühista</a>
+				<?php endif; ?>
 				
 				
 				

@@ -219,11 +219,28 @@ class Event {
         $stmt->bind_param("iii", $_SESSION ["userId"], $eventid, $attending);
 
         if ($stmt->execute() ){
-            echo "õnnestus";
+            //echo "õnnestus";
         } else {
             echo "ERROR".$stmt->error;
         }
     }
+
+    function attendEventDelete($eventid) {
+
+        $stmt = $this->connection->prepare("UPDATE s_attend SET user_id = ?, event_id = ?, attending = ?");
+        echo $this->connection->error;
+
+        $attending = 0;
+
+        $stmt->bind_param("iii", $_SESSION ["userId"], $eventid, $attending);
+
+        if ($stmt->execute() ){
+            //echo "õnnestus";
+        } else {
+            echo "ERROR".$stmt->error;
+        }
+    }
+
 
     function editMyEvent(){
 
