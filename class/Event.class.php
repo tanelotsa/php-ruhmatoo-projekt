@@ -55,8 +55,6 @@ class Event {
 
         }
 
-
-
         //$stmt->bind_param("i", $_SESSION ["userId"]);
         $stmt->bind_result($id, $event, $date, $time, $location, $info, $places);
         $stmt->execute ();
@@ -76,6 +74,7 @@ class Event {
 
         }
         return $results;
+
     }
 
 
