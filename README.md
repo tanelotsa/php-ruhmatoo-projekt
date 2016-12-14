@@ -1,11 +1,15 @@
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
-Sporter
-Rühmaliikmed:Kent Loog, Tanel Otsa
-Eesmärk:Rakenduse eesmärk on aidata otsida endale treeningkaaslasi. Nt. kui soovid minna discgolfi mängima, aga sul ei ole hetkel sõpru, kes saaks tulla sinuga mängima, 
-siis saad minna sinna lehele ja luua üritus, kuhu teised saavad liituda või otsida juba kellegi teise poolt loodud olemasoleva ürituse.
-Sihtrühm: Aktiivsed sportlikud inimesed, kellel ei meeldi üksi trenni teha.
-Eripära: Ei tea ühtegi samalaadset rakendust, mis ideaalselt töötaks.
+## Sporter
+**Rühmaliikmed:** Kent Loog, Tanel Otsa!
+**Eesmärk:**
+*Rakenduse eesmärk on aidata otsida endale treeningkaaslasi. Kasutaja saab luua ise üritusi ja liituda üritustega;*
+*Nt. kui soovid minna discgolfi mängima, aga sul ei ole hetkel sõpru, kes saaks tulla sinuga mängima,*
+*siis saad minna sinna lehele ja luua üritus, kuhu teised saavad liituda või otsida juba kellegi teise poolt loodud olemasoleva ürituse.*
+**Sihtrühm:**
+*Aktiivsed sportlikud inimesed, kellel ei meeldi üksi trenni teha.*
+**Eripära:**
+*Ei tea ühtegi samalaadset rakendust, mis ideaalselt töötaks.*
 ## Tööjuhend
 1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
 1. Muudate vastavalt _git config_'ut
