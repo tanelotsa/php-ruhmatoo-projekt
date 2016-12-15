@@ -46,7 +46,7 @@ class Event {
             
             (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id )
              
-             FROM s_event LEFT JOIN s_attend ON s_event.id=s_attend.event_id group by s_event.event WHERE deleted IS NULL AND date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ? OR count LIKE ?) ORDER BY $sort $orderBy");
+             FROM s_event WHERE deleted IS NULL AND date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ? OR count LIKE ?) ORDER BY $sort $orderBy");
             $searchWord = "%".$q."%";
             $stmt->bind_param("sssssii", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
         } else {
@@ -56,7 +56,7 @@ class Event {
             
             (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id) 
             
-            FROM s_event LEFT JOIN s_attend ON s_event.id=s_attend.event_id WHERE deleted IS NULL AND date >= NOW() ORDER BY $sort $orderBy");
+            FROM s_event WHERE deleted IS NULL AND date >= NOW() ORDER BY $sort $orderBy");
 
         }
 
@@ -213,20 +213,52 @@ class Event {
 			return;
         } 
 		$stmt->close();
-		
-		
-        $stmt = $this->connection->prepare("INSERT INTO s_attend (user_id, event_id, attending) VALUE (?, ?, ?)");
+
+        $stmt = $this->connection->prepare("SELECT id FROM s_attend WHERE user_id = ? AND event_id = ? AND attending = 0");
         echo $this->connection->error;
 
-        $attending = 1;
+        $stmt->bind_param("ii", $_SESSION ["userId"], $eventid);
+        $stmt->execute();
+        $update=false;
+        if ($stmt->fetch() ){
+            // juba reganud
 
-        $stmt->bind_param("iii", $_SESSION ["userId"], $eventid, $attending);
-
-        if ($stmt->execute() ){
-            //echo "õnnestus";
-        } else {
-            echo "ERROR".$stmt->error;
+            $update=true;
         }
+        $stmt->close();
+
+        if ($update==true) {
+
+
+            $stmt = $this->connection->prepare("UPDATE s_attend SET user_id = ?, event_id = ?, attending = ?");
+            echo $this->connection->error;
+
+            $attending = 1;
+
+            $stmt->bind_param("iii", $_SESSION ["userId"], $eventid, $attending);
+
+            if ($stmt->execute() ){
+                //echo "õnnestus";
+            } else {
+                echo "ERROR".$stmt->error;
+            }
+
+        } else {
+            $stmt = $this->connection->prepare("INSERT INTO s_attend (user_id, event_id, attending) VALUE (?, ?, ?)");
+            echo $this->connection->error;
+
+            $attending = 1;
+
+            $stmt->bind_param("iii", $_SESSION ["userId"], $eventid, $attending);
+
+            if ($stmt->execute() ){
+                //echo "õnnestus";
+            } else {
+                echo "ERROR".$stmt->error;
+            }
+
+        }
+
     }
 
     function attendEventDelete($eventid) {
