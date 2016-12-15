@@ -42,21 +42,26 @@ class Event {
         if ($q != "") {
             //otsin
             //echo "otsin: ".$q;
-            $stmt = $this->connection->prepare("
-              SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL AND date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ?) ORDER BY $sort $orderBy
-              ");
+            $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places, 
+            
+            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id )
+             
+             FROM s_event LEFT JOIN s_attend ON s_event.id=s_attend.event_id group by s_event.event WHERE deleted IS NULL AND date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ? OR count LIKE ?) ORDER BY $sort $orderBy");
             $searchWord = "%".$q."%";
-            $stmt->bind_param("sssssi", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+            $stmt->bind_param("sssssii", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
         } else {
             //ei otsi
 
-            $stmt = $this->connection->prepare("SELECT id, event, date, time, location, info, places FROM s_event WHERE deleted IS NULL AND date >= NOW() ORDER BY $sort $orderBy");
-
+            $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places, 
+            
+            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id) 
+            
+            FROM s_event LEFT JOIN s_attend ON s_event.id=s_attend.event_id WHERE deleted IS NULL AND date >= NOW() ORDER BY $sort $orderBy");
 
         }
 
         //$stmt->bind_param("i", $_SESSION ["userId"]);
-        $stmt->bind_result($id, $event, $date, $time, $location, $info, $places);
+        $stmt->bind_result($id, $event, $date, $time, $location, $info, $places, $count);
         $stmt->execute ();
         $results = array();
         //tsükli sisu tehakse niimitu korda , mitu rida sql lausega tuleb
@@ -69,7 +74,7 @@ class Event {
             $sport->location = $location;
             $sport->info = $info;
             $sport->places = $places;
-
+            $sport->count = $count;
             array_push($results,$sport);
 
         }
