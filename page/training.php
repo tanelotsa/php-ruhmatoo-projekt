@@ -16,17 +16,25 @@
 
 <div class="container" style="width:100%;background-color:#EBEBE6;">
     <div class="row">
-        <div class="col-sm-4 col-md-4 col-md-offset-1">
+
+        <div class="col-sm-4 col-md-3 col-md-offset-1">
             <h1> Treeningute leht </h1>
         </div>
 
-        <div class="col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-5">
-            <h1><a class='btn btn-info btn-md' href='data.php?id=".$s->id."'>Tagasi</a></h1>
+        <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-5">
+        <h2>
+            <a class='btn btn-default btn-md' href='data.php?id=".$s->id."'>Treeningute arhiiv</a>
+
+            <a class='btn btn-info btn-md' href='data.php?id=".$s->id."'>Tagasi</a>
+        </h2>
         </div>
+
     </div>
 </div>
 
 <div class="container">
+    <h2> Tulevad Treeningud </h2>
+
     <h2> Minu loodud treeningud </h2>
 <?php
 
@@ -67,7 +75,6 @@ $html .= "</table>";
 echo $html;
 
 ?>
-<h2> Tulevad Treeningud </h2>
 
 
 </div>
