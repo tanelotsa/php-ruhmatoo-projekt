@@ -8,7 +8,25 @@
     $Event = new Event($mysqli);
 
     $training = $Event->editMyEvent();
-
+	
+	
+	
+	if (isset($_GET["q"])) {
+		
+		$q = $_GET["q"];
+	
+	} else {
+		//ei otsi
+		$q = "";
+	}
+	$sort = "id";
+	$order = "ASC";
+	
+	if(isset($_GET["sort"]) && (isset($_GET["order"]))) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
+	$myattend = $Event->myAttendedEvents($q, $sort, $order);
 
 ?>
 
@@ -34,6 +52,56 @@
 
 <div class="container">
     <h2> Tulevad Treeningud </h2>
+	
+<?php
+
+
+
+			$html = "<table class='table table-bordered table-condensed '>";
+
+			$html .= "<tr>";
+			
+			$orderDate = "ASC";
+        if (isset($_GET["order"]) &&
+            $_GET["order"] == "ASC" &&
+            $_GET["sort"] == "date" ) {
+            $orderDate = "DESC";
+        }
+			//$html .= "<td>ID</td>";
+			$html .= "<td class=\"active\" style=\"width: 20%\"><strong>Liik</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Kuupäev <a href='?q=".$q."&sort=date&order=".$orderDate."'><span class='glyphicon glyphicon-sort text-success'></span></a></strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Aeg</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Asukoht</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 40%\"><strong>Lisainfo</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Kohti</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Osaleb</strong></td>";
+			//$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Edit</strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Liitu</strong></td>";
+			$html .= "</tr>";
+
+			foreach ($myattend as $m) {
+
+				$html .= "<tr>";
+				//$html .= "<td>".$s->id."</td>";
+				$html .= "<td>".$m->event."</td>";
+				$html .= "<td>".$m->date."</td>";
+				$html .= "<td>".$m->time."</td>";
+				$html .= "<td>".$m->location."</td>";
+				$html .= "<td>".$m->info."</td>";
+				$html .= "<td>".$m->places."</td>";
+				$html .= "<td>".$m->count."</td>";
+				//$html .= "<td><a class='btn btn-primary btn-xs' href='edit.php?id=".$s->id."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+				$html .= "<td><a class='btn btn-success btn-xs' href='attend_training.php?id=".$m->id."'><span class='glyphicon glyphicon-ok'></span></a></td>";
+				$html .= "</tr>";
+
+			}
+
+			$html .= "</table>";
+
+			echo $html;
+
+
+			?>
 
     <h2> Minu loodud treeningud </h2>
 <?php

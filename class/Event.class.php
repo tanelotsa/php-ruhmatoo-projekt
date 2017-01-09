@@ -303,7 +303,60 @@ class Event {
     }
 
 
+	function myAttendedEvents ($q, $sort, $order) {
+		
+		$allowedSort = ["date"];
+		
+		
+			if(!in_array($sort, $allowedSort)){
+            $sort = "date";
+        }
+        $orderBy = "ASC";
+        if($order == "DESC") {
+            $orderBy = "DESC";
+        }
+        //echo "Sorteerin: ".$sort." ".$orderBy." ";
 
+        if ($q != "") {
+            //otsin
+            //echo "otsin: ".$q;
+            $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places, 
+            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id )
+             FROM s_event WHERE deleted IS NULL AND s_event.author=? AND attending date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ? OR count LIKE ?) ORDER BY $sort $orderBy");
+            $searchWord = "%".$q."%";
+            $stmt->bind_param("isssssii", $_SESSION ["userId"], $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+        } else {
+            //ei otsi
+
+            $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places, 
+
+            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id) 
+            
+            FROM s_event WHERE deleted IS NULL AND date >= NOW() AND s_attend.user_id=22 ORDER BY $sort $orderBy");
+
+        }
+
+        $stmt->bind_param("i", $_SESSION ["userId"]);
+        $stmt->bind_result($id, $event, $date, $time, $location, $info, $places, $count);
+        $stmt->execute ();
+        $results = array();
+        //tsükli sisu tehakse niimitu korda , mitu rida sql lausega tuleb
+        while($stmt->fetch()) {
+            $myattend = new StdClass();
+            $myattend->id = $id;
+            $myattend->event = $event;
+            $myattend->date = $date;
+            $myattend->time = $time;
+            $myattend->location = $location;
+            $myattend->info = $info;
+            $myattend->places = $places;
+            $myattend->count = $count;
+            array_push($results,$myattend);
+
+        }
+        return $results;
+
+    }
 
 }
 ?>
