@@ -302,7 +302,7 @@ class Event {
         return $results;
     }
 
-
+/*
 	function myAttendedEvents ($q, $sort, $order) {
 		
 		$allowedSort = ["date"];
@@ -357,6 +357,40 @@ class Event {
         return $results;
 
     }
+*/
+    function myAttendedEvents() {
+
+
+        $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places,
+                  (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id) FROM s_attend
+                  JOIN s_event ON s_attend.event_id=s_event.id
+                  WHERE deleted IS NULL AND date >= NOW() AND s_attend.user_id= ?");
+
+        $stmt->bind_param("i", $_SESSION ["userId"]);
+
+        $stmt->bind_result($id, $event, $date, $time, $location, $info, $places, $count);
+
+        $stmt->execute ();
+        $results = array();
+
+        //tsükli sisu tehakse niimitu korda , mitu rida sql lausega tuleb
+        while($stmt->fetch()) {
+            $myattend = new StdClass();
+            $myattend->id = $id;
+            $myattend->event = $event;
+            $myattend->date = $date;
+            $myattend->time = $time;
+            $myattend->location = $location;
+            $myattend->info = $info;
+            $myattend->places = $places;
+            $myattend->count = $count;
+            array_push($results,$myattend);
+
+        }
+        return $results;
+
+    }
+
 
 }
 ?>
