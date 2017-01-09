@@ -391,6 +391,39 @@ class Event {
 
     }
 
+    function myAttendedEventsArchive() {
+
+
+        $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places,
+                  (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id) FROM s_attend
+                  JOIN s_event ON s_attend.event_id=s_event.id
+                  WHERE deleted IS NULL AND date < NOW() AND s_attend.user_id= ?");
+
+        $stmt->bind_param("i", $_SESSION ["userId"]);
+
+        $stmt->bind_result($id, $event, $date, $time, $location, $info, $places, $count);
+
+        $stmt->execute ();
+        $results = array();
+
+        //tsükli sisu tehakse niimitu korda , mitu rida sql lausega tuleb
+        while($stmt->fetch()) {
+            $myArchive = new StdClass();
+            $myArchive->id = $id;
+            $myArchive->event = $event;
+            $myArchive->date = $date;
+            $myArchive->time = $time;
+            $myArchive->location = $location;
+            $myArchive->info = $info;
+            $myArchive->places = $places;
+            $myArchive->count = $count;
+            array_push($results,$myArchive);
+
+        }
+        return $results;
+
+    }
+
 
 }
 ?>

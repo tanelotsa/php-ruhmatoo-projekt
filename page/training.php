@@ -40,8 +40,8 @@
         </div>
 
         <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-5">
-        <h2>
-            <a class='btn btn-default btn-md' href='data.php?id=".$s->id."'>Treeningute arhiiv</a>
+            <h2>
+            <a class='btn btn-default btn-md' href='training_archive.php?id=".$s->id."'>Treeningute arhiiv</a>
 
             <a class='btn btn-info btn-md' href='data.php?id=".$s->id."'>Tagasi</a>
         </h2>
@@ -69,7 +69,7 @@
         }
 			//$html .= "<td>ID</td>";
 			$html .= "<td class=\"active\" style=\"width: 20%\"><strong>Liik</strong></td>";
-			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Kuupäev <a href='?q=".$q."&sort=date&order=".$orderDate."'><span class='glyphicon glyphicon-sort text-success'></span></a></strong></td>";
+			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Kuupäev</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 5%\"><strong>Aeg</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 15%\"><strong>Asukoht</strong></td>";
 			$html .= "<td class=\"active\" style=\"width: 40%\"><strong>Lisainfo</strong></td>";
