@@ -44,7 +44,7 @@ class Event {
             //echo "otsin: ".$q;
             $stmt = $this->connection->prepare("SELECT s_event.id, s_event.event, s_event.date, s_event.time, s_event.location, s_event.info, s_event.places, 
             
-            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id )
+            (SELECT SUM(attending) FROM s_attend WHERE event_id=s_event.id)
              
              FROM s_event WHERE deleted IS NULL AND date >= NOW() AND ( event LIKE ? OR date LIKE ? OR time LIKE ? OR location LIKE ? OR info LIKE ? OR places LIKE ? OR count LIKE ?) ORDER BY $sort $orderBy");
             $searchWord = "%".$q."%";
