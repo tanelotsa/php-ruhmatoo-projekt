@@ -1,4 +1,4 @@
-# PHP rühmatöö projekt
+﻿# PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 ## Sporter
 **Rühmaliikmed:** Kent Loog, Tanel Otsa!;
@@ -10,6 +10,47 @@
 *Aktiivsed sportlikud inimesed, kellel ei meeldi üksi trenni teha.*;
 **Eripära:**
 *Ei tea ühtegi samalaadset rakendust, mis ideaalselt töötaks.*;
+
+SQL tabelid
+
+CREATE TABLE `s_attend` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `attending` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `s_event` (
+  `id` int(11) NOT NULL,
+  `event` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `info` text,
+  `places` int(11) DEFAULT NULL,
+  `author` int(11) NOT NULL,
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `s_interests` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `interest` text NOT NULL,
+  `deleted` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `s_user_info` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `gender` varchar(10) DEFAULT NULL,
+  `birthdate` varchar(30) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 ## Tööjuhend
 1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
 1. Muudate vastavalt _git config_'ut
